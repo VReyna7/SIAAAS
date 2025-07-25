@@ -1,0 +1,12 @@
+# Archivos de configuración locales y sensibles
+config.py
+
+# Directorios de Python
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.env/
+
+# Logs
+*.log
