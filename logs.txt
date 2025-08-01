@@ -1,0 +1,22 @@
+[2025-07-27T21:36:56.466661 Variado Prueba de logs][2025-08-01T00:44:41.265385 FILE_OPERATION Creaci髇 de directorio | Operation: Creaci髇 | Path: C:\Users\vedua\Documents\SIAAS/maricones]
+[2025-08-01T00:44:51.089597 FILE_OPERATION Creaci髇 de directorio | Operation: Creaci髇 | Path: C:\Users\vedua\Documents\SIAAS/aklsdjaklsdasldkja]
+[
+2025-08-01T10:49:10.169235 | FILE_OPERATION Creaci髇 de directorio | Operation: Creaci髇 | Path: C:\Users\vedua\Documents\SIAAS/prueba]
+[
+2025-08-01T10:51:31.316028 | FILE_OPERATION Creaci髇 de directorio | Operation: Creaci髇 | Path: C:\Users\vedua\Documents\SIAAS/Logsss]
+
+[2025-08-01T11:03:12.484072 | FILE_OPERATION Creaci髇 de directorio | Operation: Creaci髇 | Path: C:\Users\vedua\Documents\SIAAS/Loogss/newcarpeta]
+
+[2025-08-01T11:03:56.004995 | FILE_OPERATION Creaci髇 de directorio | Operation: Creaci髇 | Path: C:\Users\vedua\Documents\SIAAS/Logsss/newcarpeta]
+
+[2025-08-01T11:17:45.328541 | ERROR Error inesperado | Error: Error General | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line...]
+
+[2025-08-01T11:20:04.555646 | ERROR Error inesperado | Error: Error General | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 37, in selectionMenu     extrapath, nombre = nombre.split('/')     ^^^^^^^^^^^^^^^^^ ValueError: not enough values to unpack (expected 2, got 1) ...]
+
+[2025-08-01T11:22:11.798647 | ERROR Error inesperado | Error: Error General | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 38, in selectionMenu     extrapath, nombre = nombre.split('/')     ^^^^^^^^^^^^^^^^^ ValueError: not enough values to unpack (expected 2, got 1) ...]
+
+[2025-08-01T11:26:59.789547 | ERROR Error inesperado | Error: Error General | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 41, in selectionMenu     if not extrapath:            ^^^^^^^^^ UnboundLocalError: cannot access local variable 'extrapath' where it is not associated with a value ...]
+
+[2025-08-01T11:28:09.239218 | FILE_OPERATION Creaci贸n de directorio | Operation: Creaci贸n | Path: C:\Users\vedua\Documents\SIAAS/prueba]
+
+[2025-08-01T11:29:25.696864 | FILE_OPERATION Creaci贸n de directorio | Operation: Creaci贸n | Path: C:\Users\vedua\Documents\SIAAS/prueba/newcarpeta]

@@ -9,28 +9,33 @@ class Directory:
 
 class File: 
     def __init__(self, name, ext, path, size, timestamp):
-        self.__name = name
-        self.__ext = ext
-        self.__path = path
-        self.__size = size
-        self.__timestap = timestamp 
+        self.name = name
+        self.ext = ext
+        self.path = path
+        self.size = size
+        self.timestap = timestamp 
+
 
 class Event: 
     def __init__(self, description, tipo, timestamp:datetime):
+        if not isinstance(timestamp, datetime.datetime):
+            raise TypeError("timestamp debe ser un objeto datetime")
         self.__tipo = tipo
         self.__descripcion = description
         self.__timestamp : datetime = timestamp
 
     def to_log_string(self):
-        return f"[{self.__timestamp.isoformat()} {self.__tipo} {self.__descripcion}]"
+        return f"\n[{self.__timestamp.isoformat()} | {self.__tipo} {self.__descripcion}]"
 
 class ErrorEvent (Event):
     def __init__(self, timestamp, description, stack_trace, error_message):
+        if not isinstance(timestamp, datetime.datetime):
+            raise TypeError("timestamp debe ser un objeto datetime")
         self.__error_message = error_message
         self.__stack_trace = stack_trace
         full_description = (
             f"{description} | Error: {error_message} | "
-            f"Trace: {stack_trace[:100].replace('\n', ' ')}..."
+            f"Trace: {stack_trace[:500].replace('\n', ' ')}..."
         )
         super().__init__(full_description, 'ERROR', timestamp)
     
@@ -47,8 +52,9 @@ class ErrorEvent (Event):
 
 class OperationEvent (Event):
     def __init__(self, timestamp, description, affected_path, operation_type):
-        self.__operation_type = operation_type
-        self.__affected_path = affected_path
+        if not isinstance(timestamp, datetime.datetime):
+            raise TypeError("timestamp debe ser un objeto datetime")
+        self.operation_type = operation_type
+        self.affected_path = affected_path
         full_description = f"{description} | Operation: {operation_type} | Path: {affected_path}"
         super().__init__(full_description, 'FILE_OPERATION', timestamp)
-    
