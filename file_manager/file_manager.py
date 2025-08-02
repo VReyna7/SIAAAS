@@ -30,9 +30,9 @@ class FileManager:
             raise DirNoAllowed()
     
     def create_file(self, file : File):
-        path_file_ext = os.path.abspath(file.path + "/"+file.name + file.ext)
+        path_file_ext = os.path.abspath(file.path + "/"+file.name +"."+file.ext)
 
-        if not os.path.exists(path_file_ext):
+        if  not os.path.exists(file.path):
             raise FileError()
 
         with open(path_file_ext,'a'):

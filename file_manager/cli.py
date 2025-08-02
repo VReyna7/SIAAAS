@@ -1,10 +1,11 @@
-from file_manager.exceptions import EmptyException, DirNoAllowed, InvalidEventTypeError, FileLogError
+from file_manager.exceptions import EmptyException, DirNoAllowed, InvalidEventTypeError, FileLogError, FileError
 from file_manager.models import Event, ErrorEvent, OperationEvent
 from file_manager.logs_register import LogRegister
 from file_manager.file_manager import FileManager
 from file_manager.models import File
 import datetime
 import traceback
+import os
 
 class CLIManager:
     def __init__(self):
@@ -19,11 +20,21 @@ class CLIManager:
         print('5-Cambiar root Path')
         print('6-Salir')
 
-    def input_menu(self):
-        datos = input()
-        if not datos:
-            raise EmptyException()
-        return datos
+    def input_menu(self):    
+        log_manager = LogRegister()
+        try:
+            datos = input()
+            if not datos:
+             raise EmptyException()
+            
+            return datos
+        except TypeError as x:
+            error_event = ErrorEvent(datetime.datetime.now(),'Tipo erroneo', traceback.format_exc(), 'Type error' )
+            log_manager.register_log(error_event)
+            print(x)
+        except Exception:
+            error_event = ErrorEvent(datetime.datetime.now(),'Error inesperado', traceback.format_exc(), 'Error General' )
+            log_manager.register_log(error_event)
     
     def selectionMenu(self, dato):
         log_manager = LogRegister()
@@ -44,22 +55,13 @@ class CLIManager:
                     print(f"Directorio creado, {new_dir.fullpath+"/"+nombre}")
                     operation_event = OperationEvent(datetime.datetime.now(),'Creación de directorio', new_dir.fullpath+"/"+nombre, "Creación")
                     input('Presione enter para continuar')
+                    log_manager.safe_log(operation_event)
                 else:
                     new_dir.create_dir(nombre,extrapath)
                     print(f"Directorio creado, {new_dir.fullpath+"/"+extrapath+"/"+nombre}")
                     operation_event = OperationEvent(datetime.datetime.now(),'Creación de directorio', new_dir.fullpath+"/"+extrapath+"/"+nombre, "Creación")
                     input('Presione enter para continuar')
-                try:
-                    log_manager.register_log(operation_event)
-                except InvalidEventTypeError:
-                    error_event = ErrorEvent(datetime.datetime.now(),'Tipo no es un evento', traceback.format_exc(), 'Event type error' )
-                    log_manager.register_log(error_event)
-                except TypeError as x:
-                    error_event = ErrorEvent(datetime.datetime.now(),'Tipo erroneo', traceback.format_exc(), 'Type error' )
-                    log_manager.register_log(error_event)
-                except Exception:
-                    error_event = ErrorEvent(datetime.datetime.now(),'Error inesperado', traceback.format_exc(), 'Error General' )
-                    log_manager.register_log(error_event)
+                    log_manager.safe_log(operation_event)
             except DirNoAllowed:
                 error_event = ErrorEvent(datetime.datetime.now(),'Error al crear directorio', traceback.format_exc(), 'DIR ERROR' )
                 log_manager.register_log(error_event)
@@ -69,8 +71,49 @@ class CLIManager:
                 log_manager.register_log(error_event)
             finally:
                 return True
-                
         elif dato == '2':
-            pass
+            try:
+                file_manager = FileManager()
+                print('Ingrese el nombre del archivo a crear')
+                nombre_file = input().strip()
+                print('Ingrese la extensión sin . (Ejemplo: txt, json)')
+                ext_file = input().lstrip('.')
+                print(f'Actualmente se guardara en {file_manager.fullpath}, Si desea guardarlo en otra carpeta agregue el directorio')
+                print('\nEjemplop ( dir/casa ) si quiere agregar en carpetas anidadas o (dir) si es solo una carpeta.')
+                dir_file = input()
+                if dir_file:
+                    try:
+                        complete_path = os.path.abspath(os.path.join(file_manager.fullpath,dir_file))
+                        file = File(nombre_file,ext_file,complete_path,0,datetime.datetime.now())
+                        file_manager.create_file(file)
+                        operation_event = OperationEvent(datetime.datetime.now(),'Creación de archivo', complete_path+"/"+file.name+"."+file.ext, "Creación")
+                        log_manager.safe_log(error_event)
+                        print('Archivo creado en ', complete_path)
+                        input('presione enter para continuar')
+                    except (FileError,OSError):
+                        error_event = ErrorEvent(datetime.datetime.now(),'Error al crear archivo', traceback.format_exc(), 'File Error' )
+                        log_manager.register_log(error_event)
+                    except Exception:
+                        error_event = ErrorEvent(datetime.datetime.now(),'Error inesperado al crear el archivo', traceback.format_exc(), 'File Error' )
+                        log_manager.register_log(error_event)
+                else:
+                    file = File(nombre_file,ext_file,file_manager.fullpath,0,datetime.datetime.now())
+                    try:
+                        file_manager.create_file(file)
+                        operation_event = OperationEvent(datetime.datetime.now(),'Creación de archivo', file_manager.fullpath+"/"+file.name+"."+file.ext, "Creación")
+                        log_manager.safe_log(operation_event)
+                        print('Archivo creado en ', complete_path)
+                        input('presione enter para continuar')
+                    except (FileError,OSError):
+                        error_event = ErrorEvent(datetime.datetime.now(),'Error al crear archivo', traceback.format_exc(), 'File Error' )
+                        log_manager.register_log(error_event)
+                    except Exception:
+                        error_event = ErrorEvent(datetime.datetime.now(),'Error inesperado al crear el archivo', traceback.format_exc(), 'File Error' )
+                        log_manager.register_log(error_event)
+            except Exception:
+                error_event = ErrorEvent(datetime.datetime.now(),'Error inesperado al crear el archivo', traceback.format_exc(), 'File Error' )
+                log_manager.register_log(error_event)
+            finally:
+                return True
         elif dato == '6':
             return False

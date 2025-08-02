@@ -20,7 +20,7 @@ class DirNoAllowed(FileManagerError):
         super().__init__(self.message)
 
 class FileError(FileManagerError):
-    def __init__(self,message = "Problemas al crear el archivo"):
+    def __init__(self,message = "Problemas al crear el archivo, Falta carpeta"):
         self.message = message
         super().__init__(message)
 

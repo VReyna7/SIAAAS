@@ -20,3 +20,31 @@
 [2025-08-01T11:28:09.239218 | FILE_OPERATION Creación de directorio | Operation: Creación | Path: C:\Users\vedua\Documents\SIAAS/prueba]
 
 [2025-08-01T11:29:25.696864 | FILE_OPERATION Creación de directorio | Operation: Creación | Path: C:\Users\vedua\Documents\SIAAS/prueba/newcarpeta]
+
+[2025-08-01T17:59:51.343253 | ERROR Error inesperado al crear el archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 109, in selectionMenu     file = File(nombre,ext_file,file_manager.fullpath,0,datetime.datetime.now())                 ^^^^^^ UnboundLocalError: cannot access local variable 'nombre' where it is not associated with a value ...]
+
+[2025-08-01T18:01:54.146300 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 111, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 36, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo ...]
+
+[2025-08-01T18:04:02.637279 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 112, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 36, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo ...]
+
+[2025-08-01T18:13:10.818523 | FILE_OPERATION Creación de directorio | Operation: Creación | Path: C:\Users\vedua\Documents\SIAAS/archivo]
+
+[2025-08-01T18:13:31.570986 | FILE_OPERATION Creación de directorio | Operation: Creación | Path: C:\Users\vedua\Documents\SIAAS/prueba/archivo]
+
+[2025-08-01T18:13:48.227088 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 112, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 36, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-01T18:18:24.705582 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 113, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 36, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-01T18:19:51.507669 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 113, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 37, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-01T18:21:53.398465 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 113, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 37, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-01T18:23:00.568036 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 98, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 36, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-01T18:25:18.699481 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 98, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 37, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-01T22:21:59.648988 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 88, in selectionMenu     file_manager.create_file(file)     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 36, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-01T22:22:22.873847 | FILE_OPERATION Creación de archivo | Operation: Creación | Path: C:\Users\vedua\Documents\SIAAS/prueba.txt]
+
+[2025-08-01T22:22:22.874805 | ERROR Error inesperado al crear el archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 105, in selectionMenu     print('Archivo creado en ', complete_path)                                 ^^^^^^^^^^^^^ UnboundLocalError: cannot access local variable 'complete_path' where it is not associated with a value ...]
