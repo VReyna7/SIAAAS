@@ -6,6 +6,7 @@ from file_manager.models import File
 import datetime
 import traceback
 import os
+import time
 
 class CLIManager:
     def __init__(self):
@@ -15,10 +16,9 @@ class CLIManager:
         print('Porfavor ingresar la opción de la operación a realizar')
         print('1-Crear Carpeta')
         print('2-Crear Archivo')
-        print('3-Ver carpetas')
-        print('4-Ver archivos')
-        print('5-Cambiar root Path')
-        print('6-Salir')
+        print('3-Ver carpetas y archivos de un directorio')
+        print('4-Cambiar root Path')
+        print('5-Salir')
 
     def input_menu(self):    
         log_manager = LogRegister()
@@ -38,11 +38,11 @@ class CLIManager:
     
     def selectionMenu(self, dato):
         log_manager = LogRegister()
+        file_manager = FileManager()
         if dato == '1':
             try:
-                new_dir = FileManager()
                 print('Ingrese el nombre de la carpeta que quiere agregar | ', end='')
-                print(' Sera guardado en el path', new_dir.fullpath)
+                print(' Sera guardado en el path', file_manager.fullpath)
                 print('Si quiere guardarlo como carpeta hija escribalo de la siguiente forma Carpeta_padre/Carpeta_nueva')
                 nombre = input()
                 partes_path = nombre.split('/')
@@ -51,15 +51,15 @@ class CLIManager:
                 else:
                     extrapath = ''
                 if not extrapath:
-                    new_dir.create_dir(nombre)
-                    print(f"Directorio creado, {new_dir.fullpath+"/"+nombre}")
-                    operation_event = OperationEvent(datetime.datetime.now(),'Creación de directorio', new_dir.fullpath+"/"+nombre, "Creación")
+                    file_manager.create_dir(nombre)
+                    print(f"Directorio creado, {file_manager.fullpath+"/"+nombre}")
+                    operation_event = OperationEvent(datetime.datetime.now(),'Creación de directorio', file_manager.fullpath+"/"+nombre, "Creación")
                     input('Presione enter para continuar')
                     log_manager.safe_log(operation_event)
                 else:
-                    new_dir.create_dir(nombre,extrapath)
-                    print(f"Directorio creado, {new_dir.fullpath+"/"+extrapath+"/"+nombre}")
-                    operation_event = OperationEvent(datetime.datetime.now(),'Creación de directorio', new_dir.fullpath+"/"+extrapath+"/"+nombre, "Creación")
+                    file_manager.create_dir(nombre,extrapath)
+                    print(f"Directorio creado, {file_manager.fullpath+"/"+extrapath+"/"+nombre}")
+                    operation_event = OperationEvent(datetime.datetime.now(),'Creación de directorio', file_manager.fullpath+"/"+extrapath+"/"+nombre, "Creación")
                     input('Presione enter para continuar')
                     log_manager.safe_log(operation_event)
             except DirNoAllowed:
@@ -73,7 +73,6 @@ class CLIManager:
                 return True
         elif dato == '2':
             try:
-                file_manager = FileManager()
                 print('Ingrese el nombre del archivo a crear')
                 nombre_file = input().strip()
                 print('Ingrese la extensión sin . (Ejemplo: txt, json)')
@@ -115,5 +114,34 @@ class CLIManager:
                 log_manager.register_log(error_event)
             finally:
                 return True
-        elif dato == '6':
+        elif dato == '3':
+            try:
+                print(f'Si quiere listar los archivos de {file_manager.fullpath} solo presione enter')
+                print(f'Por otro lado si quiere ver listar las carpetas de otro directorio más especifico use "nombreCarpeta" o "NombreCarpta/SubCarpeta')
+                extrapath = input()
+                if not extrapath:
+                    listdir = file_manager.list_dir(file_manager.fullpath)
+                else:
+                    listdir = file_manager.list_dir(os.path.abspath(os.path.join(file_manager.fullpath, extrapath)))
+                
+                if len(listdir) > 0: 
+                    i = 0
+                    for dir in listdir:
+                        if i % 3 == 0:
+                           time.sleep(1) 
+                        print(dir)
+                        i += 1
+                else:
+                    print('No se encuentron archivos o carpetas \n')
+
+            except Exception:
+                error_event = ErrorEvent(datetime.datetime.now(),'Error inesperado al listar el archivo', traceback.format_exc(), 'List dir Error' )
+                log_manager.register_log(error_event)
+            finally:
+                return True
+        elif dato == '4':
+            print('Ingrese el nuevo path de forma completa, absoluta')
+            new_path = input()
+            file_manager.fullpath = new_path
+        elif dato == '5':
             return False

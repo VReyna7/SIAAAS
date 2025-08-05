@@ -48,3 +48,19 @@
 [2025-08-01T22:22:22.873847 | FILE_OPERATION Creación de archivo | Operation: Creación | Path: C:\Users\vedua\Documents\SIAAS/prueba.txt]
 
 [2025-08-01T22:22:22.874805 | ERROR Error inesperado al crear el archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 105, in selectionMenu     print('Archivo creado en ', complete_path)                                 ^^^^^^^^^^^^^ UnboundLocalError: cannot access local variable 'complete_path' where it is not associated with a value ...]
+
+[2025-08-02T21:33:39.439818 | ERROR Error al crear archivo | Error: File Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 88, in selectionMenu     operation_event = OperationEvent(datetime.datetime.now(),'Creación de archivo', complete_path+"/"+file.name+"."+file.ext, "Creación")     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\file_manager.py", line 36, in create_file     raise FileError() file_manager.exceptions.FileError: Problemas al crear el archivo, Falta carpeta ...]
+
+[2025-08-04T18:03:38.079589 | ERROR Error inesperado al listar el archivo | Error: List dir Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 128, in selectionMenu     if not len(dir) == 0:                ^^^ UnboundLocalError: cannot access local variable 'dir' where it is not associated with a value ...]
+
+[2025-08-04T18:03:45.711548 | ERROR Error inesperado al listar el archivo | Error: List dir Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 128, in selectionMenu     if not len(dir) == 0:                ^^^ UnboundLocalError: cannot access local variable 'dir' where it is not associated with a value ...]
+
+[2025-08-04T18:03:57.447623 | ERROR Error inesperado al listar el archivo | Error: List dir Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 128, in selectionMenu     if not len(dir) == 0:                ^^^ UnboundLocalError: cannot access local variable 'dir' where it is not associated with a value ...]
+
+[2025-08-04T18:04:39.320787 | ERROR Error inesperado al listar el archivo | Error: List dir Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 128, in selectionMenu     if len(dir) > 0:            ^^^ UnboundLocalError: cannot access local variable 'dir' where it is not associated with a value ...]
+
+[2025-08-04T18:05:09.521265 | ERROR Error inesperado al listar el archivo | Error: List dir Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 128, in selectionMenu     if len(dir) > 0:            ^^^ UnboundLocalError: cannot access local variable 'dir' where it is not associated with a value ...]
+
+[2025-08-04T18:14:31.192951 | ERROR Tipo erroneo | Error: Type error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 28, in input_menu     raise EmptyException()           ~~~~~~~~~~~~~~^^   File "c:\Users\vedua\Documents\SIAAS\file_manager\exceptions.py", line 33, in __init__     super().__init__(message)     ~~~~~~~~~~~~~~~~^^^^^^^^^ TypeError: object.__init__() takes exactly one argument (the instance to initialize) ...]
+
+[2025-08-04T18:17:57.795800 | ERROR Error inesperado al listar el archivo | Error: List dir Error | Trace: Traceback (most recent call last):   File "c:\Users\vedua\Documents\SIAAS\file_manager\cli.py", line 129, in selectionMenu     if len(listdir) > 0:        ~~~^^^^^^^^^ TypeError: object of type 'NoneType' has no len() ...]

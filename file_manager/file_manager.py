@@ -37,3 +37,12 @@ class FileManager:
 
         with open(path_file_ext,'a'):
             pass
+    
+    def list_dir(self, path):
+        try:
+            full_path_list = os.path.abspath(path) 
+            if os.path.commonpath([self.fullpath, path]) == self.fullpath:
+                path = os.listdir(full_path_list)
+                return path
+        except TypeError :
+            return False
